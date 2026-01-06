@@ -1,0 +1,98 @@
+<?php
+
+return [
+    'dashboard' => 'Dashboard',
+    'media_library' => 'Media Library',
+    'settings' => 'Settings',
+    'users' => 'Users',
+    'profile' => 'Profile',
+    'logout' => 'Logout',
+    'login' => 'Login',
+    'home' => 'Home',
+    'save' => 'Save',
+    'delete' => 'Delete',
+    'edit' => 'Edit',
+    'view' => 'View',
+    'cancel' => 'Cancel',
+    'download' => 'Download',
+    'upload' => 'Upload',
+    'search' => 'Search',
+    'close' => 'Close',
+    'add' => 'Add',
+    'create' => 'Create',
+    'update' => 'Update',
+    'remove' => 'Remove',
+    'back' => 'Back',
+    'confirm' => 'Confirm',
+    'yes' => 'Yes',
+    'no' => 'No',
+    'loading' => 'Loading...',
+    'success' => 'Success',
+    'error' => 'Error',
+    'warning' => 'Warning',
+    'info' => 'Information',
+
+    // Dashboard
+    'welcome' => 'Welcome',
+    'dashboard_title' => 'Dashboard',
+
+    // Media
+    'file_name' => 'File Name',
+    'source' => 'Source',
+    'size' => 'Size',
+    'upload_date' => 'Upload Date',
+    'preview' => 'Preview',
+    'file_details' => 'File Details',
+    'mime_type' => 'File Type',
+    'download_file' => 'Download',
+    'no_items' => 'No items found',
+    'actions' => 'Actions',
+    'bulk_actions' => 'Bulk Actions',
+    'showing' => 'Showing',
+    'to' => 'to',
+    'of' => 'of',
+    'entries' => 'entries',
+    'search_placeholder' => 'Search...',
+    'no_results' => 'No results found',
+    'are_you_sure' => 'Are you sure?',
+    'this_action_cannot_be_undone' => 'This action cannot be undone.',
+    'confirm_delete' => 'Confirm Delete',
+    'per_page' => 'Per Page',
+    'language' => 'Language',
+    'english' => 'English',
+    'arabic' => 'العربية',
+
+    // Faqs
+    'faqs' => 'FAQs',
+    'question' => 'Question',
+    'answer' => 'Answer',
+    'create_faq' => 'Create FAQ',
+
+    // Pricing Plans
+    'pricing_plans' => 'Pricing Plans',
+    'plan_name' => 'Plan Name',
+    'price' => 'Price',
+    'features' => 'Features',
+
+    // Contact Messages
+    'contact_messages' => 'Contact Messages',
+    'name' => 'Name',
+    'email' => 'Email',
+    'message' => 'Message',
+    'phone' => 'Phone',
+    'subject' => 'Subject',
+
+    // Reach Us
+    'reach_us' => 'Reach Us',
+    'address' => 'Address',
+    'phone_number' => 'Phone Number',
+    'email_address' => 'Email Address',
+
+    // General Settings
+    'general_settings' => 'General Settings',
+    'site_name' => 'Site Name',
+    'site_description' => 'Site Description',
+    'logo' => 'Logo',
+    'favicon' => 'Favicon',
+    'dashboard_logo' => 'Dashboard Logo',
+];

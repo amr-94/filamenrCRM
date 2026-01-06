@@ -1,0 +1,15 @@
+<?php
+
+return [
+    'supportedLocales' => [
+        'en' => ['name' => 'English', 'script' => 'Latn', 'native' => 'English', 'regional' => 'en_GB'],
+        'ar' => ['name' => 'Arabic', 'script' => 'Arab', 'native' => 'العربية', 'regional' => 'ar_AE'],
+    ],
+    'useAcceptLanguageHeader' => true,
+    'hideDefaultLocaleInURL' => false,
+    'localesOrder' => [],
+    'localesMapping' => [],
+    'utf8suffix' => env('LARAVELLOCALIZATION_UTF8SUFFIX', ''),
+    'urlsIgnored' => ['/skipped'],
+    'httpMethodsIgnored' => ['POST', 'PUT', 'PATCH', 'DELETE'],
+];
