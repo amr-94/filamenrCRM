@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('reach_us', function (Blueprint $table) {
             $table->id();
             $table->string('contact_type'); // Email, Phone, Office
-            $table->string('title')->nullable(); // عنوان اختياري (مثل: Main Office, Support Email)
-            $table->text('value'); // القيمة (البريد الإلكتروني، رقم الهاتف، العنوان)
-            $table->text('icon')->nullable(); // أيقونة (رابط الصورة)
-            $table->integer('order')->default(0); // ترتيب العرض
-            $table->boolean('is_active')->default(true); // تفعيل/تعطيل
+            $table->string('title')->nullable(); 
+            $table->text('value'); 
+            $table->text('icon')->nullable(); 
+            $table->integer('order')->default(0); 
+            $table->boolean('is_active')->default(true); 
             $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
             $table->softDeletes();
             $table->timestamps();

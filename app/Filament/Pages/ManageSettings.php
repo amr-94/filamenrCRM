@@ -23,13 +23,29 @@ class ManageSettings extends Page implements HasForms
 
     protected string $view = 'filament.pages.manage-settings';
 
-    protected static ?string $navigationLabel = 'General Settings';
-
-    protected static ?string $title = 'General Settings';
-
     protected static ?string $slug = 'general-settings';
 
     public ?array $data = [];
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('messages.system_admin');
+    }
+
+    public static function getLabel(): ?string
+    {
+        return __('messages.general_settings');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.general_settings');
+    }
+
+    public function getTitle(): string
+    {
+        return __('messages.general_settings');
+    }
 
     public function mount(): void
     {
@@ -49,25 +65,31 @@ class ManageSettings extends Page implements HasForms
     {
         return $schema
             ->components([
-                Section::make('Branding')
+                Section::make(__('messages.branding'))
                     ->schema([
                         TextInput::make('site_name')
+                            ->label(__('messages.site_name'))
                             ->required(),
                         SpatieMediaLibraryFileUpload::make('site_logo')
+                            ->label(__('messages.logo'))
                             ->collection('site_logo')
                             ->disk('public')
                             ->image(),
                         TextInput::make('dashboard_name')
+                            ->label(__('messages.dashboard_title'))
                             ->required(),
                         SpatieMediaLibraryFileUpload::make('dashboard_logo')
+                            ->label(__('messages.dashboard_logo'))
                             ->collection('dashboard_logo')
                             ->disk('public')
                             ->image(),
                     ]),
-                Section::make('Design')
+                Section::make(__('messages.design'))
                     ->schema([
-                        ColorPicker::make('primary_color'),
-                        ColorPicker::make('secondary_color'),
+                        ColorPicker::make('primary_color')
+                            ->label(__('messages.primary_color')),
+                        ColorPicker::make('secondary_color')
+                            ->label(__('messages.secondary_color')),
                     ]),
                 SEOForm::make(),
             ])
@@ -85,14 +107,14 @@ class ManageSettings extends Page implements HasForms
 
             Notification::make()
                 ->success()
-                ->title('Settings saved successfully')
+                ->title(__('messages.settings_saved'))
                 ->send();
 
             $this->redirect(route('filament.admin.pages.general-settings'));
         } catch (\Exception $exception) {
             Notification::make()
                 ->danger()
-                ->title('Error saving settings')
+                ->title(__('messages.settings_error'))
                 ->body($exception->getMessage())
                 ->send();
         }

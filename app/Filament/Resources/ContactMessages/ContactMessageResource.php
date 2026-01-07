@@ -20,9 +20,39 @@ class ContactMessageResource extends Resource
 {
     protected static ?string $model = ContactMessage::class;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('messages.communications');
+    }
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = '.';
+    protected static ?string $recordTitleAttribute = 'email';
+
+    public static function getLabel(): ?string
+    {
+        return __('messages.contact');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('messages.contact');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.contact');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status', 'new')->count() ?: null;
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::where('status', 'new')->count() > 0 ? 'danger' : 'gray';
+    }
 
     public static function form(Schema $schema): Schema
     {

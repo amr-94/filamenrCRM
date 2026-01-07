@@ -22,9 +22,29 @@ class ReachUsResource extends Resource
 {
     protected static ?string $model = ReachUs::class;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('messages.communications');
+    }
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = '.';
+    protected static ?string $recordTitleAttribute = 'title';
+
+    public static function getLabel(): ?string
+    {
+        return __('messages.reach_us');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('messages.reach_us');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.reach_us');
+    }
 
     public static function form(Schema $schema): Schema
     {

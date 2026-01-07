@@ -22,8 +22,27 @@ class GeneralSetting extends Model implements HasMedia
         'seo_keywords',
     ];
 
+    protected $appends = [
+        'site_logo_url',
+        'dashboard_logo_url',
+    ];
+
+    public function getSiteLogoUrlAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('site_logo');
+    }
+
+    public function getDashboardLogoUrlAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('dashboard_logo');
+    }
+
     public function registerMediaCollections(): void
     {
+        $this
+            ->addMediaCollection('site_logo')
+            ->singleFile();
+
         $this
             ->addMediaCollection('dashboard_logo')
             ->singleFile();

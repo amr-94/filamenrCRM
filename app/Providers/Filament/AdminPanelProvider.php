@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\SetLocaleMiddleware;
 use App\Models\GeneralSetting;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -27,8 +28,9 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        $primaryColor = Color::Amber;
-        $brandName = 'Filament CRM';
+        $primaryColor = '#f59e0b';
+        $secondaryColor = '#f59e0b';
+        $brandName = 'Babu DashBoard';
         $brandLogo = null;
 
         if (Schema::hasTable('general_settings')) {
@@ -37,7 +39,6 @@ class AdminPanelProvider extends PanelProvider
                 if ($settings) {
                     $brandName = $settings->dashboard_name ?: $brandName;
 
-                    // Try to get logo more reliably
                     $logoMedia = $settings->getFirstMedia('dashboard_logo');
 
                     if ($logoMedia) {
@@ -46,8 +47,7 @@ class AdminPanelProvider extends PanelProvider
 
                     if ($settings->primary_color && str_contains($settings->primary_color, '#')) {
                         $primaryColor = $settings->primary_color;
-                    } elseif ($settings->primary_color) {
-                        $primaryColor = $settings->primary_color;
+                        $secondaryColor = $settings->secondary_color;
                     }
                 }
             } catch (\Exception $e) {
@@ -59,22 +59,27 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandName($brandName)
-            ->brandLogo($brandLogo)
-            ->brandLogoHeight('2.5rem')
+            // ->brandName($brandName)
+            ->brandLogo(fn() => view(
+                'filament.components.sidebar-header',
+                [
+                    'logo' => $brandLogo,
+                    'name' => $brandName,
+                    'color' => $primaryColor
+                ]
+            ))
+            // ->brandLogoHeight('2.5rem')
             ->colors([
-                'primary' => $primaryColor,
+                'primary' => $secondaryColor,
             ])
-            ->plugin(
-                FilamentCmsPlugin::make()
-                    ->usePost(false)
-                    ->useCategory(false)
-            )
+            ->favicon($brandLogo)
+            ->profile()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,
             ])
+            ->sidebarCollapsibleOnDesktop()
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
@@ -90,15 +95,16 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                \App\Http\Middleware\SetLocaleMiddleware::class,
+                SetLocaleMiddleware::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->renderHook(
-                'panels::sidebar.header',
-                fn(): View => view('filament.components.dashboard-logo', ['logo' => $brandLogo, 'name' => $brandName]),
-            )
+
+            // ->renderHook(
+            //     'panels::user-menu.before',
+            //     fn(): View => view('filament.components.navbar-messages'),
+            // )
             ->renderHook(
                 'panels::user-menu.before',
                 fn(): View => view('filament.components.language-switcher'),

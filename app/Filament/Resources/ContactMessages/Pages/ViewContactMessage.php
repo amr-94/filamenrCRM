@@ -16,4 +16,13 @@ class ViewContactMessage extends ViewRecord
             EditAction::make(),
         ];
     }
+
+    public function mount(int|string $record): void
+    {
+        parent::mount($record);
+
+        if ($this->record && $this->record->status === 'new') {
+            $this->record->update(['status' => 'read']);
+        }
+    }
 }

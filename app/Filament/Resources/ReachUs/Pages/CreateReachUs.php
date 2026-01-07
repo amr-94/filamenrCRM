@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateReachUs extends CreateRecord
 {
     protected static string $resource = ReachUsResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

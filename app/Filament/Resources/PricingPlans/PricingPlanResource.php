@@ -22,9 +22,29 @@ class PricingPlanResource extends Resource
 {
     protected static ?string $model = PricingPlan::class;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('messages.content_management');
+    }
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = '.';
+    protected static ?string $recordTitleAttribute = 'title';
+
+    public static function getLabel(): ?string
+    {
+        return __('messages.pricing');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('messages.pricing');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.pricing');
+    }
 
     public static function form(Schema $schema): Schema
     {

@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('company_name')->nullable();
-            $table->string('number_of_locations')->nullable(); // For the select dropdown
+            $table->string('number_of_locations')->nullable();
             $table->text('message');
             $table->enum('status', ['new', 'read', 'replied'])->default('new');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

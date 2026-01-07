@@ -22,9 +22,29 @@ class FaqResource extends Resource
 {
     protected static ?string $model = Faq::class;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('messages.content_management');
+    }
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = '.';
+    protected static ?string $recordTitleAttribute = 'question';
+
+    public static function getLabel(): ?string
+    {
+        return __('messages.faqs');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('messages.faqs');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.faqs');
+    }
 
     public static function form(Schema $schema): Schema
     {
